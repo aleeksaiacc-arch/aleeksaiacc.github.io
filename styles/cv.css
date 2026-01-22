@@ -1,0 +1,490 @@
+@import url('https://fonts.googleapis.com/css?family=Open Sans:400,500,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Lora:400,500,600,700,800');
+
+:root {
+  --body-font-family: "Open Sans";
+  --heading-font-family: "Lora";
+  --heading-font-weight: 800;
+  --strong-font-weight: 700;
+  --highlight-color: #235dcf;
+}
+
+body {
+  background-color: lightsteelblue;
+  font-family: var(--body-font-family)
+}
+
+h1 {
+  font-size: 2rem;
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  color: var(--highlight-color);
+  border-bottom: 0.1rem solid;
+  margin-block-end: 0.52em;
+  padding-bottom: 0.15em;
+
+  /*-webkit-background-clip: text;
+  background-clip: text;
+  caret-color: #0f62fe;
+  color: transparent;
+  display: inline-block;
+  background-image: linear-gradient(90deg, #0043ce, #4589ff);*/
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  color: var(--highlight-color);
+  margin-block-end: 0.52em;
+  padding-bottom: 0.15em;
+}
+
+a:link,
+a:visited {
+  color: var(--highlight-color);
+}
+
+.servicenow-link:link,
+.servicenow-link:visited {
+  color: #1a4ba8;
+  text-decoration: none;
+}
+
+.servicenow-link:hover {
+  text-decoration: underline;
+  color: var(--highlight-color);
+}
+
+ul {
+  margin-top: 0;
+  padding-left: 1.2rem;
+}
+
+#cv {
+  box-sizing: border-box;
+  max-width: 62rem;
+  padding: 2.5rem;
+  margin: 3rem auto;
+  background-color: white;
+  box-shadow:
+    0px 0px 4px hsl(0deg 0% 0% / 0.1),
+    0px 0px 8px hsl(0deg 0% 0% / 0.1),
+    0px 0px 16px hsl(0deg 0% 0% / 0.1),
+    0px 0px 32px hsl(0deg 0% 0% / 0.1),
+    0px 0px 64px hsl(0deg 0% 0% / 0.1)
+  ;
+}
+
+.icon {
+  color: var(--highlight-color);
+  width: 1.8rem !important;
+}
+
+#header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 2rem;
+  align-items: center;
+}
+
+#name {
+  font-size: 3.75rem;
+  line-height: 1.1;
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  color: var(--highlight-color);
+}
+
+#intro {
+  padding-left: 2rem;
+  text-wrap: pretty;
+  border-left: 0.5rem solid;
+  border-color: var(--highlight-color);
+}
+
+#intro>p:first-child {
+  margin-block-start: 0.6rem;
+  font-weight: 700;
+  font-size: 1.12rem;
+}
+
+#available {
+  color: var(--highlight-color);
+}
+
+#contact {
+  grid-template-columns: auto auto auto auto;
+  
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: grid;
+  justify-content: space-between;
+}
+
+#contact > a > span {
+  text-decoration: underline;
+  margin-left:0.5rem;
+}
+
+#contact > a:link,
+#contact > a:visited {
+  color: inherit;
+}
+
+#contact > a:hover {
+  color: var(--highlight-color);
+}
+
+.phone-with-messengers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.messenger-links {
+  display: flex;
+  gap: 1.4rem;
+  margin-top: 0.7rem;
+  margin-left: 2.3rem;
+}
+
+.messenger-links > a {
+  text-decoration: none;
+}
+
+.messenger-links > a:hover {
+  opacity: 0.8;
+}
+
+
+.section-large {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  row-gap: 1rem;
+}
+
+#experience {
+  row-gap: 0.7rem;
+}
+
+#experience > div > ul {
+  margin-bottom: 0;
+}
+
+.experience-position {
+  font-weight: var(--strong-font-weight);
+  color: var(--highlight-color);
+}
+
+.experience-company {
+  font-weight: var(--strong-font-weight);
+}
+
+#technology-list {
+  row-gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.technology-name {
+  font-weight: 600;
+}
+
+.technology-description {
+  align-self: center;
+  text-wrap: pretty;
+}
+
+
+
+.two-sections {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  column-gap: 2rem;
+}
+
+.section-small {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
+
+.presenting-type {
+  font-weight: 600;
+}
+
+.project-name {
+  font-weight: 600;
+  text-decoration: underline !important;
+}
+
+.project-name:link,
+.project-name:visited {
+  color: inherit;
+}
+
+.project-name:hover {
+  color: var(--highlight-color);
+}
+
+.education-detail {
+  font-weight: var(--strong-font-weight);
+  color: var(--highlight-color)
+}
+
+.language-name {
+  font-weight: 600;
+}
+
+.workproject-heading {
+  margin-top: 2rem;
+}
+
+.workproject-intro {
+  margin-bottom: 0.7rem;
+}
+
+.workproject-details {
+  margin-bottom: 0.7rem;
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
+
+#pageHeader {
+  display: none;
+  grid-template-columns: auto 1fr;
+  justify-items: right;
+}
+
+#pageHeaderName {
+  font-size: 1.5rem;
+  line-height: 1.1;
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  color: var(--highlight-color);
+}
+
+#pageHeader > div > a {
+  margin-left: 0.6rem;
+}
+
+#pageHeader > div > a > span {
+  text-decoration: underline;
+  margin-left:0.2rem;
+}
+
+#pageHeader > div > a:link,
+#pageHeader > div > a:visited {
+  color: inherit;
+}
+
+/* Hide the background with the drop shadow, and adjust the padding. */
+@media screen and (max-width: 65rem) {
+  body {
+    background-color: white;
+  }
+
+  #cv {
+    padding: 2rem;
+    margin: 0 auto;
+    box-shadow: none;
+  }
+}
+
+/* Switch to one-column view (mobile) */
+@media screen and (max-width: 50rem) {
+  .two-sections {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 column */
+    column-gap: 0;
+  }
+
+  #cv {
+    padding: 1rem; /* Decrease the padding */
+  }
+
+  #experience {
+    grid-template-columns: 6rem 1fr;
+  }
+}
+
+/* Switch the name and intro to be underneath each other */
+@media screen and (max-width: 45rem) {
+  #header {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  #name {
+    margin: 0 auto 1rem auto;
+  }
+  
+  #intro {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  /* Switch the contact to be single column. */
+  #contact {
+    grid-template-columns: auto;
+    row-gap: 1rem;
+    justify-content: left;
+    margin-top: 1.7rem;
+  }
+}
+
+/* Override the styling for printing to be able to save as PDF */
+@media print {
+  html {
+    font-size: 8.2pt;
+  }
+
+  #header {
+    margin-top: 3.7rem;
+  }
+
+  #pageHeader {
+    display: grid;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+  }
+
+  #cv {
+    padding: 0 1.2cm 0 1.2cm;
+    margin: 0;
+    box-shadow: none;
+    max-width: none;
+  }
+
+  #education {
+    break-after: page;
+  }
+
+  /* Show the phone number: */
+  #contact {
+    grid-template-columns: auto auto auto auto; 
+  }
+
+  .phoneNumber {
+    display: inline;
+  }
+}
+
+#footer {
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 0.2rem solid var(--highlight-color);
+  background: linear-gradient(to bottom, transparent, rgba(35, 93, 207, 0.03));
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 3rem;
+  row-gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-heading {
+  font-size: 1.1rem;
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  color: var(--highlight-color);
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem solid rgba(35, 93, 207, 0.2);
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.footer-icon {
+  color: var(--highlight-color);
+  width: 1.5rem !important;
+  flex-shrink: 0;
+}
+
+.footer-contact-item > a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.footer-contact-item > a:hover {
+  color: var(--highlight-color);
+  text-decoration: underline;
+}
+
+.footer-messenger-links {
+  display: flex;
+  gap: 1rem;
+  margin-left: 0.5rem;
+}
+
+.footer-messenger-links > a {
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-messenger-links > a:hover {
+  transform: scale(1.15);
+  opacity: 0.8;
+}
+
+.footer-text {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 0.1rem solid rgba(35, 93, 207, 0.1);
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+@media screen and (max-width: 50rem) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
+  .footer-section {
+    margin-bottom: 1rem;
+  }
+}
+
+@media print {
+  #footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    background: transparent;
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-bottom {
+    margin-top: 1rem;
+  }
+}
