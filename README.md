@@ -1,3 +1,3 @@
 Link
 
-https://aleeksaiacc.github.io/index.html
+https://aleeksaiacc-arch.github.io/aleeksaiacc.github.io/
