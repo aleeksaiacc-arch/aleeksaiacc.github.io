@@ -342,6 +342,10 @@ ul {
     font-size: 8.2pt;
   }
 
+  body {
+    background-color: white;
+  }
+
   #header {
     margin-top: 3.7rem;
   }
@@ -349,7 +353,7 @@ ul {
   #pageHeader {
     display: grid;
     padding-top: 5rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
   }
 
   #cv {
@@ -360,16 +364,64 @@ ul {
   }
 
   #education {
-    break-after: page;
+    break-after: auto;
   }
 
-  /* Show the phone number: */
+  #experience > div {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .workproject-heading {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .workproject-heading + .workproject-intro + .workproject-details {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h1, h2 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
   #contact {
     grid-template-columns: auto auto auto auto; 
   }
 
   .phoneNumber {
     display: inline;
+  }
+
+  #footer {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  ul {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .two-sections {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  #technology-list {
+    break-inside: avoid;
+  }
+
+  .technology-name,
+  .technology-description {
+    break-inside: avoid;
   }
 }
 
