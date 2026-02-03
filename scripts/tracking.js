@@ -5,8 +5,14 @@
     EMAILJS_SERVICE_ID: 'service_dcw4xrc',
     EMAILJS_TEMPLATE_ID: 'template_1dhgumo',
     EMAILJS_PUBLIC_KEY: '8YV-MLuGaexQP1NTh',
-    WEBHOOK_URL: 'https://webhook.site/478bdbdc-0563-4059-84fc-4bb7fc5d0d37'
+    WEBHOOK_URL: 'https://webhook.site/478bdbdc-0563-4059-84fc-4bb7fc5d0d37',
+    PRODUCTION_DOMAINS: ['github.io']
   };
+
+  function isProduction() {
+    const hostname = window.location.hostname;
+    return CONFIG.PRODUCTION_DOMAINS.some(domain => hostname.includes(domain));
+  }
 
   function getTimestamp() {
     return new Date().toISOString();
@@ -99,6 +105,11 @@
   }
 
   function trackVisitor() {
+    if (!isProduction()) {
+      console.log('Tracking disabled: not in production environment');
+      return;
+    }
+
     getVisitorInfo()
       .then(visitorInfo => {
         Promise.all([
