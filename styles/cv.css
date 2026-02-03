@@ -336,8 +336,16 @@ ul {
   }
 }
 
-/* Override the styling for printing to be able to save as PDF */
+.print-only {
+  display: none !important;
+}
+
 @media print {
+  @page {
+    size: A4;
+    margin-top: 2.5rem;
+  }
+
   html {
     font-size: 8.2pt;
   }
@@ -346,14 +354,43 @@ ul {
     background-color: white;
   }
 
+  .print-only {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .screen-only-link {
+    display: none !important;
+  }
+
+  .qr-img {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
   #header {
     margin-top: 3.7rem;
   }
 
   #pageHeader {
     display: grid;
-    padding-top: 5rem;
-    padding-bottom: 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: white;
+    padding: 0.4rem 1.2cm 0.5rem;
+    grid-template-columns: auto 1fr;
+    justify-items: end;
+    align-items: center;
+    border-bottom: 0.1rem solid var(--highlight-color);
+  }
+
+  #pageHeader > div {
+    display: none !important;
   }
 
   #cv {
@@ -364,7 +401,8 @@ ul {
   }
 
   #education {
-    break-after: auto;
+    break-before: page;
+    page-break-before: always;
   }
 
   #experience > div {
