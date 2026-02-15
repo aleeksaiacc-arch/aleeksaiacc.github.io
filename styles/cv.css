@@ -6,7 +6,8 @@
   --heading-font-family: "Lora";
   --heading-font-weight: 800;
   --strong-font-weight: 700;
-  --highlight-color: #235dcf;
+  --accent-color: #5a6c7d;
+  --link-color: #235dcf;
 }
 
 body {
@@ -18,7 +19,7 @@ h1 {
   font-size: 2rem;
   font-family: var(--heading-font-family);
   font-weight: var(--heading-font-weight);
-  color: var(--highlight-color);
+  color: var(--accent-color);
   border-bottom: 0.1rem solid;
   margin-block-end: 0.52em;
   padding-bottom: 0.15em;
@@ -35,25 +36,25 @@ h2 {
   font-size: 1.4rem;
   font-family: var(--heading-font-family);
   font-weight: var(--heading-font-weight);
-  color: var(--highlight-color);
+  color: var(--accent-color);
   margin-block-end: 0.52em;
   padding-bottom: 0.15em;
 }
 
 a:link,
 a:visited {
-  color: var(--highlight-color);
+  color: var(--link-color);
 }
 
 .servicenow-link:link,
 .servicenow-link:visited {
-  color: #1a4ba8;
+  color: var(--link-color);
   text-decoration: none;
 }
 
 .servicenow-link:hover {
   text-decoration: underline;
-  color: var(--highlight-color);
+  color: #1a4ba8;
 }
 
 ul {
@@ -77,8 +78,18 @@ ul {
 }
 
 .icon {
-  color: var(--highlight-color);
+  color: var(--accent-color);
   width: 1.8rem !important;
+}
+
+.fa-github.icon,
+.fa-github.footer-icon {
+  color: #000000;
+}
+
+.fa-linkedin.icon,
+.fa-linkedin.footer-icon {
+  color: #0A66C2;
 }
 
 #header {
@@ -93,14 +104,14 @@ ul {
   line-height: 1.1;
   font-family: var(--heading-font-family);
   font-weight: var(--heading-font-weight);
-  color: var(--highlight-color);
+  color: var(--accent-color);
 }
 
 #intro {
   padding-left: 2rem;
   text-wrap: pretty;
   border-left: 0.5rem solid;
-  border-color: var(--highlight-color);
+  border-color: var(--accent-color);
 }
 
 #intro>p:first-child {
@@ -110,7 +121,7 @@ ul {
 }
 
 #available {
-  color: var(--highlight-color);
+  color: var(--accent-color);
 }
 
 #contact {
@@ -133,7 +144,7 @@ ul {
 }
 
 #contact > a:hover {
-  color: var(--highlight-color);
+  color: var(--link-color);
 }
 
 .phone-with-messengers {
@@ -174,7 +185,7 @@ ul {
 
 .experience-position {
   font-weight: var(--strong-font-weight);
-  color: var(--highlight-color);
+  color: var(--accent-color);
 }
 
 .experience-company {
@@ -225,12 +236,12 @@ ul {
 }
 
 .project-name:hover {
-  color: var(--highlight-color);
+  color: var(--link-color);
 }
 
 .education-detail {
   font-weight: var(--strong-font-weight);
-  color: var(--highlight-color)
+  color: var(--accent-color);
 }
 
 .language-name {
@@ -264,7 +275,7 @@ ul {
   line-height: 1.1;
   font-family: var(--heading-font-family);
   font-weight: var(--heading-font-weight);
-  color: var(--highlight-color);
+  color: var(--accent-color);
 }
 
 #pageHeader > div > a {
@@ -386,7 +397,7 @@ ul {
     grid-template-columns: auto 1fr;
     justify-items: end;
     align-items: center;
-    border-bottom: 0.1rem solid var(--highlight-color);
+    border-bottom: 0.1rem solid var(--accent-color);
   }
 
   #pageHeader > div {
@@ -466,8 +477,8 @@ ul {
 #footer {
   margin-top: 4rem;
   padding-top: 2.5rem;
-  border-top: 0.2rem solid var(--highlight-color);
-  background: linear-gradient(to bottom, transparent, rgba(35, 93, 207, 0.03));
+  border-top: 0.2rem solid var(--accent-color);
+  background: linear-gradient(to bottom, transparent, rgba(90, 108, 125, 0.08));
 }
 
 .footer-content {
@@ -488,10 +499,10 @@ ul {
   font-size: 1.1rem;
   font-family: var(--heading-font-family);
   font-weight: var(--heading-font-weight);
-  color: var(--highlight-color);
+  color: var(--accent-color);
   margin: 0;
   padding-bottom: 0.5rem;
-  border-bottom: 0.1rem solid rgba(35, 93, 207, 0.2);
+  border-bottom: 0.1rem solid rgba(90, 108, 125, 0.2);
 }
 
 .footer-contact-item {
@@ -502,7 +513,7 @@ ul {
 }
 
 .footer-icon {
-  color: var(--highlight-color);
+  color: var(--accent-color);
   width: 1.5rem !important;
   flex-shrink: 0;
 }
@@ -514,7 +525,7 @@ ul {
 }
 
 .footer-contact-item > a:hover {
-  color: var(--highlight-color);
+  color: var(--link-color);
   text-decoration: underline;
 }
 
@@ -543,7 +554,7 @@ ul {
 .footer-bottom {
   text-align: center;
   padding-top: 1.5rem;
-  border-top: 0.1rem solid rgba(35, 93, 207, 0.1);
+  border-top: 0.1rem solid rgba(90, 108, 125, 0.15);
   color: #777;
   font-size: 0.9rem;
 }
