@@ -82,6 +82,16 @@ ul {
   width: 1.8rem !important;
 }
 
+.fa-github.icon,
+.fa-github.footer-icon {
+  color: #000000;
+}
+
+.fa-linkedin.icon,
+.fa-linkedin.footer-icon {
+  color: #0A66C2;
+}
+
 #header {
   display: grid;
   grid-template-columns: auto 1fr;
