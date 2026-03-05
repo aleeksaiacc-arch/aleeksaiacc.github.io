@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Interview Questions - Frontend Developer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      background-color: #f5f5f5;
+      position: relative;
+    }
+    .menu-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: background 0.3s;
+    }
+    .menu-button:hover {
+      background: #2980b9;
+    }
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      width: 300px;
+      background: white;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+      overflow-y: auto;
+      padding: 60px 0 20px 0;
+    }
+    .sidebar.open {
+      transform: translateX(0);
+    }
+    .sidebar h2 {
+      padding: 15px 20px;
+      color: #2c3e50;
+      font-size: 1.2em;
+      border-bottom: 2px solid #ecf0f1;
+      margin-bottom: 10px;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar li {
+      margin: 0;
+    }
+    .sidebar a {
+      display: block;
+      padding: 12px 20px;
+      color: #34495e;
+      text-decoration: none;
+      transition: background 0.2s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar a:hover {
+      background: #f8f9fa;
+      border-left-color: #3498db;
+    }
+    .sidebar .section-link {
+      font-weight: bold;
+      color: #2c3e50;
+      background: #ecf0f1;
+      padding: 10px 20px;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .content-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 20px 20px 20px;
+      transition: margin-left 0.3s;
+    }
+    .content-wrapper.shifted {
+      margin-left: 300px;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      z-index: 999;
+    }
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    h1 {
+      color: #2c3e50;
+      border-bottom: 3px solid #3498db;
+      padding-bottom: 10px;
+      margin-top: 40px;
+    }
+    h2 {
+      color: #34495e;
+      margin-top: 30px;
+      font-size: 1.3em;
+    }
+    .question {
+      background: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      scroll-margin-top: 80px;
+    }
+    .question-title {
+      font-weight: bold;
+      color: #2c3e50;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+    .answer {
+      color: #555;
+      margin-top: 10px;
+      padding-left: 15px;
+      border-left: 3px solid #3498db;
+    }
+    .code {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+    ul {
+      margin: 10px 0;
+      padding-left: 25px;
+    }
+    li {
+      margin: 5px 0;
+    }
+    @media (max-width: 768px) {
+      .content-wrapper.shifted {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="menu-button" id="menuButton" aria-label="Toggle menu">☰</button>
+  <div class="overlay" id="overlay"></div>
+  <nav class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <ul>
+      <li><a href="#top" class="section-link">Top</a></li>
+      <li><a href="#react" class="section-link">React.js</a></li>
+      <li><a href="#q1">Q1: Class vs Functional Components</a></li>
+      <li><a href="#q2">Q2: React Hooks</a></li>
+      <li><a href="#q3">Q3: useEffect Hook</a></li>
+      <li><a href="#q4">Q4: React Performance</a></li>
+      <li><a href="#q5">Q5: Virtual DOM</a></li>
+      <li><a href="#q6">Q6: Reconciliation</a></li>
+      <li><a href="#q7">Q7: React Portals</a></li>
+      <li><a href="#typescript" class="section-link">TypeScript</a></li>
+      <li><a href="#q8">Q8: TypeScript Benefits</a></li>
+      <li><a href="#q9">Q9: Interfaces vs Types</a></li>
+      <li><a href="#q10">Q10: Generics</a></li>
+      <li><a href="#q11">Q11: Utility Types</a></li>
+      <li><a href="#redux" class="section-link">Redux & State</a></li>
+      <li><a href="#q12">Q12: Redux Architecture</a></li>
+      <li><a href="#q13">Q13: Redux Toolkit</a></li>
+      <li><a href="#q14">Q14: Async Actions</a></li>
+      <li><a href="#q15">Q15: Redux vs Context</a></li>
+      <li><a href="#javascript" class="section-link">JavaScript (ES6+)</a></li>
+      <li><a href="#q16">Q16: Closures</a></li>
+      <li><a href="#q17">Q17: var, let, const</a></li>
+      <li><a href="#q18">Q18: Promises & async/await</a></li>
+      <li><a href="#q19">Q19: Event Loop</a></li>
+      <li><a href="#q20">Q20: Destructuring & Spread</a></li>
+      <li><a href="#websockets" class="section-link">WebSockets</a></li>
+      <li><a href="#q21">Q21: WebSockets vs HTTP</a></li>
+      <li><a href="#q22">Q22: WebSocket Reconnection</a></li>
+      <li><a href="#testing" class="section-link">Testing (Playwright)</a></li>
+      <li><a href="#q23">Q23: Playwright Overview</a></li>
+      <li><a href="#q24">Q24: Playwright Async</a></li>
+      <li><a href="#webpack" class="section-link">Webpack</a></li>
+      <li><a href="#q25">Q25: Webpack Overview</a></li>
+      <li><a href="#q26">Q26: Code Splitting</a></li>
+      <li><a href="#api" class="section-link">API Integration</a></li>
+      <li><a href="#q27">Q27: Axios Interceptors</a></li>
+      <li><a href="#q28">Q28: REST API</a></li>
+      <li><a href="#ui" class="section-link">UI Libraries</a></li>
+      <li><a href="#q29">Q29: Chakra UI vs MUI</a></li>
+      <li><a href="#q30">Q30: CSS Modules</a></li>
+      <li><a href="#forms" class="section-link">Form Handling</a></li>
+      <li><a href="#q31">Q31: Formik & Yup</a></li>
+      <li><a href="#cicd" class="section-link">CI/CD</a></li>
+      <li><a href="#q32">Q32: GitHub Actions</a></li>
+      <li><a href="#performance" class="section-link">Performance</a></li>
+      <li><a href="#q33">Q33: React Optimization</a></li>
+      <li><a href="#q34">Q34: Tree Shaking</a></li>
+      <li><a href="#general" class="section-link">General Concepts</a></li>
+      <li><a href="#q35">Q35: CORS</a></li>
+      <li><a href="#q36">Q36: Auth vs Authorization</a></li>
+      <li><a href="#q37">Q37: Error Handling</a></li>
+      <li><a href="#q38">Q38: Responsive Design</a></li>
+      <li><a href="#q41">Q41: Cookies, Local & Session Storage</a></li>
+      <li><a href="#architecture" class="section-link">Architecture</a></li>
+      <li><a href="#q39">Q39: App Structure</a></li>
+      <li><a href="#q40">Q40: Best Practices</a></li>
+    </ul>
+  </nav>
+  <div class="content-wrapper" id="contentWrapper">
+    <div id="top"></div>
+    <h1>Frontend Developer Tech Interview Questions & Answers</h1>
+    <p><strong>Based on technologies from CV:</strong> React, TypeScript, Redux Toolkit, WebSockets, Playwright, Webpack, and more...</p>
+
+  <h1 id="react">React.js</h1>
+
+  <div class="question" id="q1">
+    <div class="question-title">Q1: Explain the difference between class components and functional components with hooks.</div>
+    <div class="answer">
+      <p><strong>Class Components:</strong> Use ES6 classes, have lifecycle methods (componentDidMount, componentDidUpdate, etc.), use 'this' keyword, and require more boilerplate code.</p>
+      <p><strong>Functional Components with Hooks:</strong> Simpler syntax, use hooks (useState, useEffect, etc.) for state and lifecycle, easier to test and understand, and are the recommended approach in modern React (React 16.8+).</p>
+      <p>Hooks allow functional components to have state and side effects, making them equivalent to class components but with cleaner code.</p>
+    </div>
+  </div>
+
+  <div class="question" id="q2">
+    <div class="question-title">Q2: What are React Hooks? Name the most commonly used hooks and their purposes.</div>
+    <div class="answer">
+      <p>React Hooks are functions that let you use state and other React features in functional components.</p>
+      <ul>
+        <li><strong>useState:</strong> Manages component state</li>
+        <li><strong>useEffect:</strong> Handles side effects (API calls, subscriptions, DOM manipulation)</li>
+        <li><strong>useContext:</strong> Accesses React context</li>
+        <li><strong>useReducer:</strong> Alternative to useState for complex state logic</li>
+        <li><strong>useMemo:</strong> Memoizes expensive calculations</li>
+        <li><strong>useCallback:</strong> Memoizes functions to prevent unnecessary re-renders</li>
+        <li><strong>useRef:</strong> Creates mutable references that persist across renders</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="question" id="q3">
+    <div class="question-title">Q3: Explain the useEffect hook and its dependency array.</div>
+    <div class="answer">
+      <p>useEffect runs after render and allows you to perform side effects. The dependency array controls when the effect runs:</p>
+      <ul>
+        <li><strong>No array:</strong> Runs after every render</li>
+        <li><strong>Empty array []:</strong> Runs only once after initial render (like componentDidMount)</li>
+        <li><strong>With dependencies [a, b]:</strong> Runs when a or b changes</li>
+      </ul>
+      <div class="code">
+useEffect(() => {
+  // Side effect code
+  return () => {
+    // Cleanup function (like componentWillUnmount)
+  };
+}, [dependency1, dependency2]);
+      </div>
+    </div>
+  </div>
+
+  <div class="question" id="q4">
+    <div class="question-title">Q4: How do you optimize React performance?</div>
+    <div class="answer">
+      <p>React performance optimization involves preventing unnecessary re-renders and expensive computations. Here are the key techniques:</p>
+
+      <p><strong>1. React.memo - Component Memoization</strong></p>
+      <p>React.memo is a higher-order component that memoizes the result of a component. It only re-renders if props have changed (shallow comparison).</p>
+      <div class="code">
+const ExpensiveComponent = React.memo(({ name, count }) => {
+  console.log('Rendering ExpensiveComponent');
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;{name}&lt;/h2&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+});
+
+const ExpensiveComponentWithCustomComparison = React.memo(
+  ({ name, count }) => {
+    return &lt;div&gt;{name}: {count}&lt;/div&gt;;
+  },
+  (prevProps, nextProps) => {
+    return prevProps.name === nextProps.name && prevProps.count === nextProps.count;
+  }
+);
+      </div>
+      <p><strong>When to use:</strong></p>
+      <ul>
+        <li>Components that render frequently with the same props</li>
+        <li>Components with expensive render logic</li>
+        <li>Components that receive primitive props (strings, numbers, booleans)</li>
+      </ul>
+      <p><strong>When NOT to use:</strong></p>
+      <ul>
+        <li>Props change frequently (memo overhead may outweigh benefits)</li>
+        <li>Props are complex objects/arrays (shallow comparison may not work as expected)</li>
+        <li>Component is already fast and simple</li>
+      </ul>
+
+      <p><strong>2. useMemo - Memoize Expensive Calculations</strong></p>
+      <p>useMemo memoizes the result of a computation and only recalculates when dependencies change.</p>
+      <div class="code">
+function ExpensiveList({ items, filter }) {
+  const filteredItems = useMemo(() => {
+    console.log('Filtering items...');
+    return items.filter(item => item.category === filter);
+  }, [items, filter]);
+
+  const sortedItems = useMemo(() => {
+    console.log('Sorting items...');
+    return [...filteredItems].sort((a, b) => a.price - b.price);
+  }, [filteredItems]);
+
+  return (
+    &lt;ul&gt;
+      {sortedItems.map(item => &lt;li key={item.id}&gt;{item.name}&lt;/li&gt;)}
+    &lt;/ul&gt;
+  );
+}
+
+function FibonacciComponent({ n }) {
+  const fibonacci = useMemo(() => {
+    console.log('Calculating fibonacci...');
+    if (n &lt;= 1) return n;
+    let a = 0, b = 1;
+    for (let i = 2; i &lt;= n; i++) {
+      [a, b] = [b, a + b];
+    }
+    return b;
+  }, [n]);
+
+  return &lt;div&gt;Fibonacci({n}) = {fibonacci}&lt;/div&gt;;
+}
+      </div>
+      <p><strong>When to use:</strong></p>
+      <ul>
+        <li>Expensive calculations (filtering, sorting, mathematical operations)</li>
+        <li>Derived data that depends on props/state</li>
+        <li>Creating objects/arrays that are passed as props to memoized components</li>
+      </ul>
+      <p><strong>When NOT to use:</strong></p>
+      <ul>
+        <li>Simple calculations (overhead may be greater than benefit)</li>
+        <li>Dependencies change on every render (defeats the purpose)</li>
+        <li>Primitive values (no need to memoize)</li>
+      </ul>
+
+      <p><strong>3. useCallback - Memoize Callback Functions</strong></p>
+      <p>useCallback returns a memoized version of a callback that only changes if dependencies change. This prevents child components from re-rendering unnecessarily.</p>
+      <div class="code">
+function ParentComponent({ userId }) {
+  const [count, setCount] = useState(0);
+  const [name, setName] = useState('');
+
+  const handleClick = useCallback(() => {
+    console.log('Button clicked');
+    setCount(c => c + 1);
+  }, []);
+
+  const handleSubmit = useCallback((data) => {
+    console.log('Submitting:', data);
+    fetch(`/api/users/${userId}`, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  }, [userId]);
+
+  const handleChange = useCallback((e) => {
+    setName(e.target.value);
+  }, []);
+
+  return (
+    &lt;div&gt;
+      &lt;ExpensiveChildComponent 
+        onClick={handleClick}
+        onSubmit={handleSubmit}
+      /&gt;
+      &lt;input value={name} onChange={handleChange} /&gt;
+    &lt;/div&gt;
+  );
+}
+
+const ExpensiveChildComponent = React.memo(({ onClick, onSubmit }) => {
+  console.log('Rendering ExpensiveChildComponent');
+  return (
+    &lt;div&gt;
+      &lt;button onClick={onClick}&gt;Click me&lt;/button&gt;
+      &lt;form onSubmit={onSubmit}&gt;...&lt;/form&gt;
+    &lt;/div&gt;
+  );
+});
+      </div>
+      <p><strong>When to use:</strong></p>
+      <ul>
+        <li>Callbacks passed to memoized child components (React.memo)</li>
+        <li>Callbacks used as dependencies in other hooks (useEffect, useMemo)</li>
+        <li>Callbacks passed to expensive child components</li>
+      </ul>
+      <p><strong>When NOT to use:</strong></p>
+      <ul>
+        <li>Callbacks that change on every render anyway (no benefit)</li>
+        <li>Simple callbacks that don't cause re-renders</li>
+        <li>Callbacks not passed to memoized components</li>
+      </ul>
+
+      <p><strong>Common Pitfalls and Best Practices:</strong></p>
+      <div class="code">
+function BadExample({ items }) {
+  const [filter, setFilter] = useState('');
+
+  const filteredItems = items.filter(item => item.name.includes(filter));
+
+  const handleClick = () => {
+    console.log('clicked');
+  };
+
+  return (
+    &lt;MemoizedChild 
+      items={filteredItems}
+      onClick={handleClick}
+    /&gt;
+  );
+}
+
+function GoodExample({ items }) {
+  const [filter, setFilter] = useState('');
+
+  const filteredItems = useMemo(() => {
+    return items.filter(item => item.name.includes(filter));
+  }, [items, filter]);
+
+  const handleClick = useCallback(() => {
+    console.log('clicked');
+  }, []);
+
+  return (
+    &lt;MemoizedChild 
+      items={filteredItems}
+      onClick={handleClick}
+    /&gt;
+  );
+}
+      </div>
+
+      <p><strong>Other Optimization Techniques:</strong></p>
+      <ul>
+        <li><strong>Code splitting:</strong> Lazy loading components with React.lazy() and Suspense to reduce initial bundle size</li>
+        <li><strong>Virtualization:</strong> Use libraries like react-window or react-virtualized for long lists (only render visible items)</li>
+        <li><strong>Avoid inline object/function creation in render:</strong> Creates new references each render, breaking memoization</li>
+        <li><strong>React DevTools Profiler:</strong> Identify performance bottlenecks and measure optimization impact</li>
+        <li><strong>Key optimization:</strong> Use stable keys in lists (avoid index as key when items can be reordered)</li>
+        <li><strong>State lifting:</strong> Lift state up only when necessary, keep state as local as possible</li>
+        <li><strong>Context optimization:</strong> Split contexts to prevent unnecessary re-renders</li>
+      </ul>
+
+      <p><strong>Performance Measurement:</strong></p>
+      <div class="code">
+import { Profiler } from 'react';
+
+function onRenderCallback(id, phase, actualDuration) {
+  console.log('Component:', id);
+  console.log('Phase:', phase);
+  console.log('Actual duration:', actualDuration);
+}
+
+function App() {
+  return (
+    &lt;Profiler id="App" onRender={onRenderCallback}&gt;
+      &lt;YourComponent /&gt;
+    &lt;/Profiler&gt;
+  );
+}
+      </div>
+    </div>
+  </div>
+
+  <div class="question" id="q5">
+    <div class="question-title">Q5: What is the Virtual DOM and how does React use it?</div>
+    <div class="answer">
+      <p>The Virtual DOM is a JavaScript representation of the real DOM. React uses it to:</p>
+      <ul>
+        <li>Create a virtual representation of UI in memory</li>
+        <li>Compare new virtual DOM with previous version (diffing)</li>
+        <li>Calculate minimal changes needed (reconciliation)</li>
+        <li>Update only changed parts in the real DOM (batching)</li>
+      </ul>
+      <p>This approach is more efficient than directly manipulating the DOM because it batches updates and minimizes expensive DOM operations.</p>
+    </div>
+  </div>
+
+  <div class="question" id="q6">
+    <div class="question-title">Q6: Explain React's reconciliation algorithm.</div>
+    <div class="answer">
+      <p>Reconciliation is React's process of updating the DOM. Key points:</p>
+      <ul>
+        <li>React compares new element tree with previous one</li>
+        <li>Uses "diffing" algorithm to find differences</li>
+        <li>Updates only changed nodes, not entire tree</li>
+        <li>Uses keys to identify which items changed, were added, or removed</li>
+        <li>Keys should be stable, unique, and predictable</li>
+      </ul>
+      <p>Without keys, React may unnecessarily recreate components, causing performance issues and losing component state.</p>
+    </div>
+  </div>
+
+  <div class="question" id="q7">
+    <div class="question-title">Q7: What are React Portals and when would you use them?</div>
+    <div class="answer">
+      <p>Portals allow you to render children into a DOM node outside the parent component hierarchy.</p>
+      <div class="code">
+import { createPortal } from 'react-dom';
+
+function Modal({ children }) {
+  return createPortal(
+    children,
+    document.getElementById('modal-root')
+  );
+}
+      </div>
+      <p>Use cases: modals, tooltips, dropdowns, or any UI that needs to break out of parent container constraints (e.g., overflow: hidden).</p>
+    </div>
+  </div>
+
+  <h1 id="typescript">TypeScript</h1>
+
+  <div class="question" id="q8">
+    <div class="question-title">Q8: What are the main benefits of TypeScript over JavaScript?</div>
+    <div class="answer">
+      <ul>
+        <li><strong>Type safety:</strong> Catches errors at compile time</li>
+        <li><strong>Better IDE support:</strong> Autocomplete, refactoring, navigation</li>
+        <li><strong>Self-documenting code:</strong> Types serve as documentation</li>
+        <li><strong>Refactoring confidence:</strong> Easier to refactor large codebases</li>
+        <li><strong>Better tooling:</strong> Enhanced debugging and development experience</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="question" id="q9">
+    <div class="question-title">Q9: Explain TypeScript interfaces vs types.</div>
+    <div class="answer">
+      <p><strong>Interfaces:</strong> Can be extended and merged, better for object shapes</p>
+      <div class="code">
+interface User {
+  name: string;
+  age: number;
+}
+
+interface Admin extends User {
+  role: string;
+}
+      </div>
+      <p><strong>Types:</strong> More flexible, can represent unions, intersections, primitives, and computed types</p>
+      <div class="code">
+type Status = 'active' | 'inactive';
+type UserOrAdmin = User | Admin;
+      </div>
+      <p>Generally: use interfaces for object shapes, types for unions/intersections/primitives.</p>
+    </div>
+  </div>
+
+  <div class="question" id="q10">
+    <div class="question-title">Q10: What are TypeScript generics and provide an example.</div>
+    <div class="answer">
+      <p>Generics allow you to create reusable components that work with multiple types.</p>
+      <div class="code">
+function identity&lt;T&gt;(arg: T): T {
+  return arg;
+}
+
+interface ApiResponse&lt;T&gt; {
+  data: T;
+  status: number;
+}
+
+const userResponse: ApiResponse&lt;User&gt; = {
+  data: { name: 'John', age: 30 },
+  status: 200
+};
+      </div>
+      <p>Generics provide type safety while maintaining flexibility.</p>
+    </div>
+  </div>
+
+  <div class="question" id="q11">
+    <div class="question-title">Q11: Explain TypeScript utility types (Partial, Pick, Omit, etc.).</div>
+    <div class="answer">
+      <p>Utility types transform existing types:</p>
+      <ul>
+        <li><strong>Partial&lt;T&gt;:</strong> Makes all properties optional</li>
+        <li><strong>Pick&lt;T, K&gt;:</strong> Selects specific properties</li>
+        <li><strong>Omit&lt;T, K&gt;:</strong> Removes specific properties</li>
+        <li><strong>Required&lt;T&gt;:</strong> Makes all properties required</li>
+        <li><strong>Readonly&lt;T&gt;:</strong> Makes all properties readonly</li>
+      </ul>
+      <div class="code">
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+type UserUpdate = Partial&lt;User&gt;; // All optional
+type UserPreview = Pick&lt;User, 'id' | 'name'&gt;; // Only id and name
+type UserWithoutId = Omit&lt;User, 'id'&gt;; // Everything except id
+      </div>
+    </div>
+  </div>
+
+  <h1 id="redux">Redux & State Management</h1>
+
+  <div class="question" id="q12">
+    <div class="question-title">Q12: Explain Redux architecture and its core concepts.</div>
+    <div class="answer">
+      <p>Redux is a predictable state container. Core concepts:</p>
+      <ul>
+        <li><strong>Store:</strong> Single source of truth holding application state</li>
+        <li><strong>Actions:</strong> Plain objects describing what happened</li>
+        <li><strong>Reducers:</strong> Pure functions that specify how state changes in response to actions</li>
+        <li><strong>Dispatch:</strong> Method to send actions to the store</li>
+        <li><strong>Selectors:</strong> Functions to extract specific data from state</li>
+      </ul>
+      <p>Data flow: Action → Dispatch → Reducer → New State → Components re-render</p>
+    </div>
+  </div>
+
+  <div class="question" id="q13">
+    <div class="question-title">Q13: What is Redux Toolkit and why is it preferred over plain Redux?</div>
+    <div class="answer">
+      <p>Redux Toolkit (RTK) is the official recommended way to write Redux logic. Benefits:</p>
+      <ul>
+        <li><strong>configureStore:</strong> Simplified store setup with good defaults</li>
+        <li><strong>createSlice:</strong> Reduces boilerplate for actions and reducers</li>
+        <li><strong>createAsyncThunk:</strong> Handles async actions easily</li>
+        <li><strong>Immer integration:</strong> Allows "mutating" logic in reducers</li>
+        <li><strong>Less boilerplate:</strong> Significantly less code than plain Redux</li>
+      </ul>
+      <div class="code">
+import { createSlice } from '@reduxjs/toolkit';
+
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState: { value: 0 },
+  reducers: {
+    increment: (state) => {
+      state.value += 1; // Immer allows direct mutation
+    }
+  }
+});
+      </div>
+    </div>
+  </div>
+
+  <div class="question" id="q14">
+    <div class="question-title">Q14: How do you handle async actions in Redux Toolkit?</div>
+    <div class="answer">
+      <p>Use createAsyncThunk for async operations:</p>
+      <div class="code">
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
+export const fetchUser = createAsyncThunk(
+  'user/fetch',
+  async (userId) => {
+    const response = await fetch(`/api/users/${userId}`);
+    return response.json();
+  }
+);
+
+const userSlice = createSlice({
+  name: 'user',
+  initialState: { data: null, loading: false, error: null },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  }
+});
+      </div>
+    </div>
+  </div>
+
+  <div class="question" id="q15">
+    <div class="question-title">Q15: When would you use Redux vs local component state vs Context API?</div>
+    <div class="answer">
+      <ul>
+        <li><strong>Local state (useState):</strong> Component-specific data, form inputs, UI state (modals, toggles)</li>
+        <li><strong>Context API:</strong> Simple global state, theme, user auth, avoiding prop drilling</li>
+        <li><strong>Redux:</strong> Complex application state, shared data across many components, time-travel debugging, middleware needs (logging, async), large applications</li>
+      </ul>
+      <p>Rule of thumb: Start with local state, use Context for simple global state, use Redux for complex state management needs.</p>
+    </div>
+  </div>
+
+  <h1 id="javascript">JavaScript (ES6+)</h1>
+
+  <div class="question" id="q16">
+    <div class="question-title">Q16: Explain closures in JavaScript.</div>
+    <div class="answer">
+      <p>A closure is a function that has access to variables in its outer (enclosing) scope even after the outer function has returned.</p>
+      <div class="code">
+function outerFunction(x) {
+  return function innerFunction(y) {
+    return x + y; // innerFunction has access to x
+  };
+}
+
+const addFive = outerFunction(5);
+console.log(addFive(3)); // 8
+      </div>
+      <p>Common use cases: data privacy, function factories, event handlers, callbacks.</p>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-title">Q17: What is the difference between var, let, and const?</div>
+    <div class="answer">
+      <ul>
+        <li><strong>var:</strong> Function-scoped, hoisted, can be redeclared</li>
+        <li><strong>let:</strong> Block-scoped, hoisted but in TDZ (Temporal Dead Zone), cannot be redeclared, can be reassigned</li>
+        <li><strong>const:</strong> Block-scoped, hoisted but in TDZ, cannot be redeclared or reassigned (but object properties can be modified)</li>
+      </ul>
+      <p>Best practice: Use const by default, let when reassignment is needed, avoid var.</p>
+    </div>
+  </div>
+
+  <div class="question" id="q18">
+    <div class="question-title">Q18: Explain promises and async/await.</div>
+    <div class="answer">
+      <p><strong>Promises:</strong> Represent eventual completion of async operation</p>
+      <div class="code">
+fetch('/api/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+      </div>
+      <p><strong>Async/await:</strong> Syntactic sugar for promises, makes async code look synchronous</p>
+      <div class="code">
+async function fetchData() {
+  try {
+    const response = await fetch('/api/data');
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+      </div>
+    </div>
+  </div>
+
+  <div class="question" id="q19">
+    <div class="question-title">Q19: What is the event loop and how does it work?</div>
+    <div class="answer">
+      <p>The event loop enables JavaScript's asynchronous behavior:</p>
+      <ul>
+        <li>JavaScript is single-threaded but uses an event loop for concurrency</li>
+        <li>Call stack executes synchronous code</li>
+        <li>Web APIs handle async operations (setTimeout, fetch, etc.)</li>
+        <li>Callback queue holds callbacks from completed async operations</li>
+        <li>Event loop moves callbacks from queue to stack when stack is empty</li>
+      </ul>
+      <p>This allows non-blocking I/O operations despite being single-threaded.</p>
+    </div>
+  </div>
+
+  <div class="question" id="q20">
+    <div class="question-title">Q20: Explain destructuring and spread operator.</div>
+    <div class="answer">
+      <p><strong>Destructuring:</strong> Extract values from arrays/objects</p>
+      <div class="code">
+const { name, age } = user;
+const [first, second] = array;
+const { name: userName, ...rest } = user;
+      </div>
+      <p><strong>Spread operator:</strong> Expand arrays/objects</p>
+      <div class="code">
+const newArray = [...oldArray, newItem];
+const newObject = { ...oldObject, newProp: value };
+      </div>
+    </div>
+  </div>
+
+  <h1>WebSockets & Real-time Communication</h1>
+
+  <div class="question">
+    <div class="question-title">Q21: What are WebSockets and how do they differ from HTTP?</div>
+    <div class="answer">
+      <p><strong>HTTP:</strong> Request-response protocol, client initiates, stateless, one-way communication</p>
+      <p><strong>WebSockets:</strong> Full-duplex communication, persistent connection, server can push data, lower latency</p>
+      <div class="code">
+const socket = new WebSocket('ws://example.com');
+
+socket.onopen = () => {
+  socket.send('Hello Server');
+};
+
+socket.onmessage = (event) => {
+  console.log('Message:', event.data);
+};
+
+socket.onerror = (error) => {
+  console.error('Error:', error);
+};
+
+socket.onclose = () => {
+  console.log('Connection closed');
+};
+      </div>
+      <p>Use cases: Chat applications, real-time notifications, live updates, collaborative editing.</p>
+    </div>
+  </div>
+
+  <div class="question" id="q22">
+    <div class="question-title">Q22: How would you handle WebSocket reconnection logic?</div>
+    <div class="answer">
+      <div class="code">
+class WebSocketManager {
+  constructor(url) {
+    this.url = url;
+    this.socket = null;
+    this.reconnectAttempts = 0;
+    this.maxReconnectAttempts = 5;
+    this.reconnectDelay = 1000;
+  }
+
+  connect() {
+    this.socket = new WebSocket(this.url);
+    
+    this.socket.onopen = () => {
+      this.reconnectAttempts = 0;
+    };
+
+    this.socket.onclose = () => {
+      if (this.reconnectAttempts < this.maxReconnectAttempts) {
+        setTimeout(() => {
+          this.reconnectAttempts++;
+          this.connect();
+        }, this.reconnectDelay * this.reconnectAttempts);
+      }
+    };
+  }
+}
+      </div>
+      <p>Implement exponential backoff, connection state management, and message queuing for offline scenarios.</p>
+    </div>
+  </div>
+
+  <h1 id="testing">Testing (Playwright)</h1>
+
+  <div class="question" id="q23">
+    <div class="question-title">Q23: What is Playwright and how does it differ from other testing tools?</div>
+    <div class="answer">
+      <p>Playwright is an end-to-end testing framework. Advantages:</p>
+      <ul>
+        <li>Cross-browser testing (Chromium, Firefox, WebKit)</li>
+        <li>Auto-waiting for elements (no manual waits needed)</li>
+        <li>Network interception and mocking</li>
+        <li>Mobile device emulation</li>
+        <li>Parallel test execution</li>
+        <li>Better debugging with trace viewer</li>
+        <li>Modern async/await API</li>
+      </ul>
+      <div class="code">
+import { test, expect } from '@playwright/test';
+
+test('user login', async ({ page }) => {
+  await page.goto('https://example.com');
+  await page.fill('#username', 'user');
+  await page.fill('#password', 'pass');
+  await page.click('button[type="submit"]');
+  await expect(page.locator('.welcome')).toBeVisible();
+});
+      </div>
+    </div>
+  </div>
+
+  <div class="question" id="q24">
+    <div class="question-title">Q24: How do you handle async operations and waiting in Playwright?</div>
+    <div class="answer">
+      <p>Playwright has built-in auto-waiting, but you can also use explicit waits:</p>
+      <div class="code">
+await page.waitForSelector('.element');
+await page.waitForLoadState('networkidle');
+await page.waitForResponse(response => response.url().includes('/api/data'));
+await expect(page.locator('.element')).toBeVisible({ timeout: 5000 });
+      </div>
+      <p>Playwright automatically waits for elements to be actionable before interacting with them.</p>
+    </div>
+  </div>
+
+  <h1 id="webpack">Webpack & Build Tools</h1>
+
+  <div class="question" id="q25">
+    <div class="question-title">Q25: What is Webpack and what problem does it solve?</div>
+    <div class="answer">
+      <p>Webpack is a module bundler that:</p>
+      <ul>
+        <li>Bundles JavaScript modules and dependencies</li>
+        <li>Transforms code (Babel, TypeScript, SASS)</li>
+        <li>Optimizes assets (minification, tree-shaking, code splitting)</li>
+        <li>Manages assets (images, fonts, CSS)</li>
+        <li>Enables hot module replacement (HMR) for development</li>
+      </ul>
+      <p>It takes modules with dependencies and generates static assets representing those modules.</p>
+    </div>
+  </div>
+
+  <div class="question" id="q26">
+    <div class="question-title">Q26: Explain code splitting in Webpack.</div>
+    <div class="answer">
+      <p>Code splitting allows you to split code into smaller chunks loaded on demand:</p>
+      <ul>
+        <li><strong>Entry point splitting:</strong> Multiple entry points</li>
+        <li><strong>Dynamic imports:</strong> Using import() for lazy loading</li>
+        <li><strong>SplitChunksPlugin:</strong> Automatically splits common dependencies</li>
+      </ul>
+      <div class="code">
+// Dynamic import
+const LazyComponent = React.lazy(() => import('./LazyComponent'));
+
+// webpack.config.js
+module.exports = {
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
+};
+      </div>
+    </div>
+  </div>
+
+  <h1 id="api">API Integration & HTTP</h1>
+
+  <div class="question" id="q27">
+    <div class="question-title">Q27: How do you handle API requests with Axios interceptors?</div>
+    <div class="answer">
+      <div class="code">
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: 'https://api.example.com',
+});
+
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+      </div>
+      <p>Interceptors are useful for: adding auth tokens, error handling, request/response transformation, logging.</p>
+    </div>
+  </div>
+
+  <div class="question" id="q28">
+    <div class="question-title">Q28: Explain REST API principles.</div>
+    <div class="answer">
+      <p>REST (Representational State Transfer) principles:</p>
+      <ul>
+        <li><strong>Stateless:</strong> Each request contains all information needed</li>
+        <li><strong>Resource-based:</strong> URLs represent resources</li>
+        <li><strong>HTTP methods:</strong> GET (read), POST (create), PUT (update), DELETE (remove)</li>
+        <li><strong>Status codes:</strong> 200 (success), 201 (created), 400 (bad request), 401 (unauthorized), 404 (not found), 500 (server error)</li>
+        <li><strong>JSON/XML:</strong> Standard data formats</li>
+      </ul>
+    </div>
+  </div>
+
+  <h1 id="ui">UI Libraries & Styling</h1>
+
+  <div class="question" id="q29">
+    <div class="question-title">Q29: Compare Chakra UI and Material-UI.</div>
+    <div class="answer">
+      <p><strong>Chakra UI:</strong></p>
+      <ul>
+        <li>More flexible and customizable</li>
+        <li>Better TypeScript support</li>
+        <li>Simpler API, less boilerplate</li>
+        <li>Built-in dark mode support</li>
+        <li>Smaller bundle size</li>
+      </ul>
+      <p><strong>Material-UI (MUI):</strong></p>
+      <ul>
+        <li>More mature ecosystem</li>
+        <li>Larger component library</li>
+        <li>Material Design guidelines</li>
+        <li>More third-party integrations</li>
+        <li>Larger bundle size</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="question" id="q30">
+    <div class="question-title">Q30: What are CSS Modules and why use them?</div>
+    <div class="answer">
+      <p>CSS Modules scope CSS to components, preventing style conflicts:</p>
+      <div class="code">
+// Button.module.css
+.button {
+  background: blue;
+  color: white;
+}
+
+// Button.jsx
+import styles from './Button.module.css';
+&lt;button className={styles.button}&gt;Click&lt;/button&gt;
+      </div>
+      <p>Benefits: Local scope, no naming conflicts, explicit dependencies, easier maintenance.</p>
+    </div>
+  </div>
+
+  <h1 id="forms">Form Handling</h1>
+
+  <div class="question" id="q31">
+    <div class="question-title">Q31: How does Formik work with Yup for form validation?</div>
+    <div class="answer">
+      <p>Formik manages form state, Yup provides schema validation:</p>
+      <div class="code">
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object({
+  email: Yup.string().email('Invalid email').required('Required'),
+  password: Yup.string().min(8, 'Min 8 characters').required('Required'),
+});
+
+const formik = useFormik({
+  initialValues: { email: '', password: '' },
+  validationSchema,
+  onSubmit: (values) => {
+    console.log(values);
+  },
+});
+      </div>
+      <p>Formik handles: form state, validation, error messages, touched fields, submission.</p>
+    </div>
+  </div>
+
+  <h1 id="cicd">CI/CD & DevOps</h1>
+
+  <div class="question" id="q32">
+    <div class="question-title">Q32: Explain GitHub Actions workflow.</div>
+    <div class="answer">
+      <p>GitHub Actions automates workflows. Example workflow:</p>
+      <div class="code">
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      - run: npm install
+      - run: npm test
+      - run: npm run build
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to AWS
+        run: aws s3 sync dist/ s3://bucket-name
+      </div>
+    </div>
+  </div>
+
+  <h1 id="performance">Performance & Optimization</h1>
+
+  <div class="question" id="q33">
+    <div class="question-title">Q33: How do you optimize a React application's performance?</div>
+    <div class="answer">
+      <ul>
+        <li><strong>Code splitting:</strong> React.lazy() and Suspense</li>
+        <li><strong>Memoization:</strong> React.memo, useMemo, useCallback</li>
+        <li><strong>Virtualization:</strong> react-window for long lists</li>
+        <li><strong>Image optimization:</strong> Lazy loading, WebP format, responsive images</li>
+        <li><strong>Bundle optimization:</strong> Tree shaking, minification, compression</li>
+        <li><strong>Avoid unnecessary re-renders:</strong> Proper dependency arrays, stable references</li>
+        <li><strong>CDN:</strong> Serve static assets from CDN (like AWS CloudFront)</li>
+        <li><strong>Lazy loading routes:</strong> Load routes on demand</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="question" id="q34">
+    <div class="question-title">Q34: What is tree shaking and how does it work?</div>
+    <div class="answer">
+      <p>Tree shaking eliminates dead code (unused exports) from the final bundle:</p>
+      <ul>
+        <li>Requires ES6 modules (import/export)</li>
+        <li>Static analysis determines unused code</li>
+        <li>Webpack and modern bundlers do this automatically</li>
+        <li>Reduces bundle size significantly</li>
+      </ul>
+      <p>Example: If you import only one function from a library, only that function is included in the bundle.</p>
+    </div>
+  </div>
+
+  <h1 id="general">General Frontend Concepts</h1>
+
+  <div class="question" id="q35">
+    <div class="question-title">Q35: Explain CORS and how to handle it.</div>
+    <div class="answer">
+      <p>CORS (Cross-Origin Resource Sharing) allows servers to specify who can access resources:</p>
+      <ul>
+        <li><strong>Same-origin:</strong> Same protocol, domain, port</li>
+        <li><strong>Cross-origin:</strong> Different origin requires CORS headers</li>
+        <li><strong>Preflight:</strong> OPTIONS request for complex requests</li>
+      </ul>
+      <p>Server must send: Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Allow-Headers</p>
+      <p>Client-side: Use proxy in development, configure server properly in production.</p>
+    </div>
+  </div>
+
+  <div class="question" id="q36">
+    <div class="question-title">Q36: What is the difference between authentication and authorization?</div>
+    <div class="answer">
+      <ul>
+        <li><strong>Authentication:</strong> Verifying who you are (login, JWT tokens, sessions)</li>
+        <li><strong>Authorization:</strong> Verifying what you can do (permissions, roles, access control)</li>
+      </ul>
+      <p>Example: Authentication confirms you're logged in, authorization determines if you can delete a post.</p>
+    </div>
+  </div>
+
+  <div class="question" id="q37">
+    <div class="question-title">Q37: How do you handle errors in a React application?</div>
+    <div class="answer">
+      <ul>
+        <li><strong>Error Boundaries:</strong> Catch errors in component tree</li>
+        <li><strong>Try-catch:</strong> For async code and event handlers</li>
+        <li><strong>Error logging:</strong> Services like Sentry for production</li>
+        <li><strong>User-friendly messages:</strong> Display helpful error messages</li>
+        <li><strong>Fallback UI:</strong> Show alternative content on error</li>
+      </ul>
+      <div class="code">
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('Error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return &lt;h1&gt;Something went wrong.&lt;/h1&gt;;
+    }
+    return this.props.children;
+  }
+}
+      </div>
+    </div>
+  </div>
+
+  <div class="question" id="q38">
+    <div class="question-title">Q38: Explain responsive design principles.</div>
+    <div class="answer">
+      <ul>
+        <li><strong>Mobile-first:</strong> Design for mobile, then scale up</li>
+        <li><strong>Flexible layouts:</strong> Use relative units (%, em, rem, vw, vh)</li>
+        <li><strong>Media queries:</strong> Adapt styles for different screen sizes</li>
+        <li><strong>Flexible images:</strong> max-width: 100%, object-fit</li>
+        <li><strong>CSS Grid & Flexbox:</strong> Modern layout techniques</li>
+        <li><strong>Viewport meta tag:</strong> Proper scaling on mobile devices</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="question" id="q41">
+    <div class="question-title">Q41: Explain Cookies, Local Storage, and Session Storage. What are they used for and what are the differences?</div>
+    <div class="answer">
+      <p><strong>Cookies:</strong></p>
+      <ul>
+        <li><strong>What it is:</strong> Small pieces of data stored by the browser, sent with every HTTP request to the server</li>
+        <li><strong>Storage size:</strong> ~4KB per cookie, limited number per domain</li>
+        <li><strong>Lifespan:</strong> Can be set with expiration date (persistent) or session-based (deleted when browser closes)</li>
+        <li><strong>Access:</strong> Accessible on both client and server (sent automatically with requests)</li>
+        <li><strong>Use cases:</strong> Authentication tokens, session management, tracking, user preferences, shopping cart data</li>
+        <li><strong>Security:</strong> Can be secured with HttpOnly, Secure, SameSite flags</li>
+      </ul>
+      <div class="code">
+document.cookie = "username=John; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/";
+document.cookie = "token=abc123; Secure; HttpOnly; SameSite=Strict";
+
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+      </div>
+
+      <p><strong>Local Storage:</strong></p>
+      <ul>
+        <li><strong>What it is:</strong> Web Storage API that stores data locally in the browser with no expiration</li>
+        <li><strong>Storage size:</strong> ~5-10MB per origin (varies by browser)</li>
+        <li><strong>Lifespan:</strong> Persists until explicitly cleared by user or programmatically</li>
+        <li><strong>Access:</strong> Only accessible via JavaScript on the client-side (not sent to server automatically)</li>
+        <li><strong>Use cases:</strong> User preferences, cached data, offline data, application state, theme settings</li>
+        <li><strong>Scope:</strong> Per origin (protocol + domain + port)</li>
+        <li><strong>API:</strong> Synchronous API (blocks main thread)</li>
+      </ul>
+      <div class="code">
+localStorage.setItem('user', JSON.stringify({ name: 'John', id: 123 }));
+const user = JSON.parse(localStorage.getItem('user'));
+localStorage.removeItem('user');
+localStorage.clear();
+
+localStorage.setItem('theme', 'dark');
+const theme = localStorage.getItem('theme');
+      </div>
+
+      <p><strong>Session Storage:</strong></p>
+      <ul>
+        <li><strong>What it is:</strong> Web Storage API similar to Local Storage but scoped to browser tab/window session</li>
+        <li><strong>Storage size:</strong> ~5-10MB per origin (varies by browser)</li>
+        <li><strong>Lifespan:</strong> Persists only for the duration of the tab/window session (deleted when tab closes)</li>
+        <li><strong>Access:</strong> Only accessible via JavaScript on the client-side, not shared between tabs</li>
+        <li><strong>Use cases:</strong> Temporary form data, multi-step form state, temporary UI state, tab-specific data</li>
+        <li><strong>Scope:</strong> Per origin AND per tab/window (each tab has its own session storage)</li>
+        <li><strong>API:</strong> Same API as Local Storage (synchronous)</li>
+      </ul>
+      <div class="code">
+sessionStorage.setItem('formData', JSON.stringify({ step: 2, data: {...} }));
+const formData = JSON.parse(sessionStorage.getItem('formData'));
+sessionStorage.removeItem('formData');
+sessionStorage.clear();
+      </div>
+
+      <p><strong>Key Differences:</strong></p>
+      <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+        <tr style="background: #ecf0f1;">
+          <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Feature</th>
+          <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Cookies</th>
+          <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Local Storage</th>
+          <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Session Storage</th>
+        </tr>
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd;"><strong>Size Limit</strong></td>
+          <td style="padding: 10px; border: 1px solid #ddd;">~4KB</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">~5-10MB</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">~5-10MB</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd;"><strong>Lifespan</strong></td>
+          <td style="padding: 10px; border: 1px solid #ddd;">Set expiration or session</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">Until cleared</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">Tab/window session</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd;"><strong>Server Access</strong></td>
+          <td style="padding: 10px; border: 1px solid #ddd;">Yes (sent with requests)</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">No</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">No</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd;"><strong>Scope</strong></td>
+          <td style="padding: 10px; border: 1px solid #ddd;">Per domain</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">Per origin</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">Per origin + tab</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd;"><strong>API</strong></td>
+          <td style="padding: 10px; border: 1px solid #ddd;">document.cookie</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">localStorage.*</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">sessionStorage.*</td>
+        </tr>
+      </table>
+
+      <p><strong>Best Practices:</strong></p>
+      <ul>
+        <li><strong>Cookies:</strong> Use for authentication tokens, session IDs, small data that server needs. Set HttpOnly for sensitive data to prevent XSS attacks</li>
+        <li><strong>Local Storage:</strong> Use for user preferences, cached data, offline functionality. Never store sensitive data (passwords, tokens) without encryption</li>
+        <li><strong>Session Storage:</strong> Use for temporary data, form state, tab-specific data. Perfect for multi-step forms or temporary UI state</li>
+        <li><strong>Security:</strong> Always validate and sanitize data. Use HTTPS. Be aware of XSS vulnerabilities. Consider using httpOnly cookies for sensitive tokens</li>
+        <li><strong>Performance:</strong> Local/Session Storage operations are synchronous and block the main thread. For large data, consider IndexedDB</li>
+      </ul>
+
+      <p><strong>When to use each:</strong></p>
+      <ul>
+        <li><strong>Cookies:</strong> Authentication, server-side session management, tracking (with consent), small preferences</li>
+        <li><strong>Local Storage:</strong> User settings, theme preferences, cached API responses, offline data, application state persistence</li>
+        <li><strong>Session Storage:</strong> Form drafts, temporary UI state, tab-specific data, multi-step processes</li>
+      </ul>
+    </div>
+  </div>
+
+  <h1 id="architecture">Architecture & Best Practices</h1>
+
+  <div class="question" id="q39">
+    <div class="question-title">Q39: How do you structure a large React application?</div>
+    <div class="answer">
+      <p>Common patterns:</p>
+      <ul>
+        <li><strong>Feature-based:</strong> Group by features (auth/, dashboard/, profile/)</li>
+        <li><strong>Component organization:</strong> Components, hooks, utils, types</li>
+        <li><strong>Shared components:</strong> Common UI components in shared/</li>
+        <li><strong>State management:</strong> Redux slices or Context providers</li>
+        <li><strong>API layer:</strong> Centralized API calls and types</li>
+        <li><strong>Constants:</strong> Configuration and constants</li>
+        <li><strong>Tests:</strong> Co-located or separate test directory</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="question" id="q40">
+    <div class="question-title">Q40: What are some React best practices you follow?</div>
+    <div class="answer">
+      <ul>
+        <li>Use functional components and hooks</li>
+        <li>Keep components small and focused (single responsibility)</li>
+        <li>Extract reusable logic into custom hooks</li>
+        <li>Use TypeScript for type safety</li>
+        <li>Implement proper error boundaries</li>
+        <li>Optimize re-renders with memoization</li>
+        <li>Use meaningful component and variable names</li>
+        <li>Follow consistent code formatting (Prettier, ESLint)</li>
+        <li>Write tests for critical functionality</li>
+        <li>Document complex logic</li>
+        <li>Use proper key props in lists</li>
+        <li>Avoid prop drilling (use Context or state management)</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    const menuButton = document.getElementById('menuButton');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const contentWrapper = document.getElementById('contentWrapper');
+
+    function toggleMenu() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+      contentWrapper.classList.toggle('shifted');
+    }
+
+    menuButton.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          toggleMenu();
+        }
+        const href = link.getAttribute('href');
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          const targetId = href.substring(1);
+          const targetElement = targetId === 'top' 
+            ? document.getElementById('top') 
+            : document.getElementById(targetId) || document.querySelector(`#${targetId}`);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+        contentWrapper.classList.remove('shifted');
+      }
+    });
+  </script>
+
+</body>
+</html>
